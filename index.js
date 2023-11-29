@@ -16,7 +16,9 @@ const backgroundLevel1 = new Sprite({
 });
 
 const player = new Player({
-	collisionBlocks: collisionBlocks
+	collisionBlocks: collisionBlocks,
+	imageSrc: "./img/Warrior/WalkingRightSprite.png",
+	frameRate: 6
 });
 
 const keys = {

@@ -1,7 +1,12 @@
-class Player {
+class Player extends Sprite {
 	constructor({
-		collisionBlocks = []
+		collisionBlocks = [],
+		imageSrc,
+		frameRate
 	}) {
+
+		super({ imageSrc, frameRate });
+
 		this.position = {
 			x: 200,
 			y: 200
@@ -10,8 +15,7 @@ class Player {
 			x: 0,
 			y: 0
 		}
-		this.width = 25;
-		this.height = 25;
+		
 		this.sides = {
 			top: this.position.y,
 			bottom: this.position.y + this.height
@@ -19,11 +23,6 @@ class Player {
 		this.gravity = 2;
 
 		this.collisionBlocks = collisionBlocks;
-	};
-
-	draw() {
-		c.fillStyle = "blue";
-		c.fillRect(this.position.x, this.position.y, this.width, this.height);
 	};
 
 	jump() {
@@ -34,10 +33,12 @@ class Player {
 
 	moveRight() {
 		this.velocity.x = 4;
+		this.image.src = "../../img/Warrior/WalkingRightSprite.png"
 	};
 	
 	moveLeft() {
 		this.velocity.x = -4;
+		this.image.src = "../../img/Warrior/WalkingLeftSprite.png"
 	};
 
 	stopMoving() {
@@ -45,6 +46,8 @@ class Player {
 	}
 
 	update() {
+		c.fillStyle = 'rgba(0, 0, 255, 0.3)';
+		//c.fillRect(this.position.x, this.position.y, this.width, this.height)
 		this.position.x += this.velocity.x;
 
 		//Verifica colisões horizontais

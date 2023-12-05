@@ -2,10 +2,11 @@ class Player extends Sprite {
 	constructor({
 		collisionBlocks = [],
 		imageSrc,
-		frameRate
+		frameRate,
+		animations
 	}) {
 
-		super({ imageSrc, frameRate });
+		super({ imageSrc, frameRate, animations });
 
 		this.position = {
 			x: 200,
@@ -33,23 +34,29 @@ class Player extends Sprite {
 
 	moveRight() {
 		this.velocity.x = 4;
-		this.image.src = "/img/Sprites/Walk.png";
+		this.switchSprite("walkRight");
+		this.lastDirection = "right";
 	};
 
 	moveLeft() {
 		this.velocity.x = -4;
-		this.reverse = true;
-		this.image.src = "/img/Sprites/Walk.png";
+		this.switchSprite("walkLeft");
+		this.lastDirection = "left";
 	};
 
 	stopMoving() {
-		this.image.src = "/img/Sprites/Idle.png";
+		if (this.lastDirection === "left") {
+			this.switchSprite("idleLeft");
+		} else {
+			this.switchSprite("idleRight");
+		}
+
 		this.velocity.x = 0;
 	}
 
 	update() {
 		c.fillStyle = 'rgba(0, 0, 255, 0.3)';
-		//c.fillRect(this.position.x, this.position.y, this.width, this.height)
+		
 		this.position.x += this.velocity.x;
 
 		//Configurar HitBox
@@ -152,5 +159,16 @@ class Player extends Sprite {
 		// }
 	};
 
+	switchSprite(name) {
+		if (this.image === this.animations[name].image) {
+			console.log(this.image.src)
+			return;
+		}
+		console.log(this.image.src)
+		this.currentFrame = 0;
+		this.image = this.animations[name].image;
+		this.frameRate = this.animations[name].frameRate;
+		this.frameBuffer = this.animations[name].frameBuffer;
+	};
 
 };

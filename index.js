@@ -17,8 +17,58 @@ const backgroundLevel1 = new Sprite({
 
 const player = new Player({
   collisionBlocks: collisionBlocks,
-  imageSrc: "./img/Sprites/Idle.png",
-  frameRate: 8
+	imageSrc: "./img/Sprites/IdleRight.png",
+	frameRate: 8,
+	animations: {
+		idleRight: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/IdleRight.png"
+		},
+		idleLeft: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/IdleLeft.png"
+		},
+		walkRight: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/WalkRight.png"
+		},
+		walkLeft: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/WalkLeft.png"
+		},
+		jumpRight: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/JumpRight.png"
+		},
+		jumpLeft: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/JumpLeft.png"
+		},
+		attackARight: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/AttackARight.png"
+		},
+		attackALeft: {
+			frameRate: 8,
+			frameBuffer: 6,
+			loop: true,
+			imageSrc: "./img/Sprites/AttackALeft.png"
+		}
+	}
 });
 
 const keys = {
@@ -41,12 +91,14 @@ function animate() {
     collisionBlock.draw();
   });
 
-  player.stopMoving();
+	player.velocity.x = 0;
   if (keys.left.pressed) {
-    player.moveLeft();
+		player.moveLeft();
   } else if (keys.right.pressed) {
-    player.moveRight();
-  }
+		player.moveRight();
+	} else {
+		player.stopMoving();
+	}
 
   player.draw();
   player.update();

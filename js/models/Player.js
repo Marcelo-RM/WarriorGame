@@ -33,17 +33,17 @@ class Player extends Sprite {
 
 	moveRight() {
 		this.velocity.x = 4;
-		this.image.src = "../../img/Sprites/Walk.png";
+		this.image.src = "/img/Sprites/Walk.png";
 	};
 
 	moveLeft() {
 		this.velocity.x = -4;
 		this.reverse = true;
-		this.image.src = "../../img/Sprites/Walk.png";
+		this.image.src = "/img/Sprites/Walk.png";
 	};
 
 	stopMoving() {
-		this.image.src = "../../img/Sprites/Idle.png";
+		this.image.src = "/img/Sprites/Idle.png";
 		this.velocity.x = 0;
 	}
 

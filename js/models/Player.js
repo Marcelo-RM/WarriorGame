@@ -15,7 +15,7 @@ class Player extends Sprite {
 			x: 0,
 			y: 0
 		}
-		
+
 		this.sides = {
 			top: this.position.y,
 			bottom: this.position.y + this.height
@@ -33,15 +33,17 @@ class Player extends Sprite {
 
 	moveRight() {
 		this.velocity.x = 4;
-		this.image.src = "../../img/Warrior/WalkingRightSprite.png"
+		this.image.src = "../../img/Sprites/Walk.png";
 	};
-	
+
 	moveLeft() {
 		this.velocity.x = -4;
-		this.image.src = "../../img/Warrior/WalkingLeftSprite.png"
+		this.reverse = true;
+		this.image.src = "../../img/Sprites/Walk.png";
 	};
 
 	stopMoving() {
+		this.image.src = "../../img/Sprites/Idle.png";
 		this.velocity.x = 0;
 	}
 
@@ -58,10 +60,10 @@ class Player extends Sprite {
 
 		//Verifica colisão vertical
 		this.checkForVerticalCollision();
-		
+
 	};
 
-	checkForHorizontalCollision () {
+	checkForHorizontalCollision() {
 		for (let i = 0; i < this.collisionBlocks.length; i++) {
 			const collisionBlock = this.collisionBlocks[i];
 
@@ -127,5 +129,5 @@ class Player extends Sprite {
 		// }
 	};
 
-	
+
 };

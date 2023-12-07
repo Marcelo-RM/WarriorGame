@@ -36,13 +36,13 @@ const player = new Player({
 			frameRate: 8,
 			frameBuffer: 6,
 			loop: true,
-			imageSrc: "./img/Sprites/WalkRight.png"
+			imageSrc: "./img/Sprites/RunRight.png"
 		},
 		walkLeft: {
 			frameRate: 8,
 			frameBuffer: 6,
 			loop: true,
-			imageSrc: "./img/Sprites/WalkLeft.png"
+			imageSrc: "./img/Sprites/RunLeft.png"
 		},
 		jumpRight: {
 			frameRate: 8,
@@ -57,15 +57,15 @@ const player = new Player({
 			imageSrc: "./img/Sprites/JumpLeft.png"
 		},
 		attackARight: {
-			frameRate: 8,
-			frameBuffer: 6,
-			loop: true,
+			frameRate: 6,
+			frameBuffer: 3,
+			loop: false,
 			imageSrc: "./img/Sprites/AttackARight.png"
 		},
 		attackALeft: {
-			frameRate: 8,
-			frameBuffer: 6,
-			loop: true,
+			frameRate: 6,
+			frameBuffer: 3,
+			loop: false,
 			imageSrc: "./img/Sprites/AttackALeft.png"
 		}
 	}
@@ -80,7 +80,10 @@ const keys = {
   },
   right: {
     pressed: false
-  }
+	},
+	attackA: {
+		pressed: false
+	}
 }
 
 function animate() {
@@ -96,7 +99,9 @@ function animate() {
 		player.moveLeft();
   } else if (keys.right.pressed) {
 		player.moveRight();
-	} else {
+	} else if (keys.attackA.pressed) {
+		player.attackA();
+	}	else {
 		player.stopMoving();
 	}
 

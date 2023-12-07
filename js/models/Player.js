@@ -54,6 +54,14 @@ class Player extends Sprite {
 		this.velocity.x = 0;
 	}
 
+	attackA() {
+		if (this.lastDirection === "left") {
+			this.switchSprite("attackALeft");
+		} else {
+			this.switchSprite("attackARight");
+		}
+	}
+
 	update() {
 		c.fillStyle = 'rgba(0, 0, 255, 0.3)';
 		
@@ -161,14 +169,13 @@ class Player extends Sprite {
 
 	switchSprite(name) {
 		if (this.image === this.animations[name].image) {
-			console.log(this.image.src)
 			return;
 		}
-		console.log(this.image.src)
 		this.currentFrame = 0;
 		this.image = this.animations[name].image;
 		this.frameRate = this.animations[name].frameRate;
 		this.frameBuffer = this.animations[name].frameBuffer;
+		this.loop = this.animations[name].loop;
 	};
 
 };
